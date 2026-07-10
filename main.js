@@ -1,5 +1,12 @@
+alert("main.js cargó");
+
 const canvas = document.getElementById("gameCanvas");
+
+alert(canvas);
+
 const ctx = canvas.getContext("2d");
+
+alert("ctx creado");
 
 canvas.style.display = "block";
 canvas.width = window.innerWidth;
@@ -10,4 +17,4 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 ctx.fillStyle = "yellow";
 ctx.font = "50px Arial";
-ctx.fillText("SI VES ESTO, EL CANVAS FUNCIONA", 50, 100);
+ctx.fillText("FUNCIONA", 50, 100);
