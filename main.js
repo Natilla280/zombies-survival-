@@ -269,3 +269,54 @@ function drawHUD(){
     ctx.fillText("🏆 Puntos: "+score,20,75);
 
 }
+// ============================
+// PARTE 4
+// ============================
+
+function gameLoop(){
+
+    if(!running) return;
+
+    // Fondo
+    ctx.fillStyle="#102010";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    // Actualizar
+    movePlayer();
+    updateBullets();
+    updateZombies();
+
+    // Dibujar
+    drawPlayer();
+    drawBullets();
+    drawZombies();
+    drawHUD();
+
+    // Game Over
+    if(player.hp<=0){
+
+        running=false;
+
+        ctx.fillStyle="rgba(0,0,0,0.7)";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        ctx.fillStyle="red";
+        ctx.font="70px Arial";
+        ctx.textAlign="center";
+        ctx.fillText("GAME OVER",canvas.width/2,canvas.height/2-30);
+
+        ctx.fillStyle="white";
+        ctx.font="30px Arial";
+        ctx.fillText("Puntaje: "+score,canvas.width/2,canvas.height/2+20);
+
+        ctx.font="22px Arial";
+        ctx.fillText("Recarga la página para volver a jugar",
+            canvas.width/2,
+            canvas.height/2+70);
+
+        return;
+    }
+
+    requestAnimationFrame(gameLoop);
+
+}
