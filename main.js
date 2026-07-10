@@ -40,3 +40,40 @@ playButton.onclick = () => {
     spawnZombie();
     gameLoop();
 };
+function movePlayer() {
+
+    if (keys["w"]) player.y -= player.speed;
+    if (keys["s"]) player.y += player.speed;
+    if (keys["a"]) player.x -= player.speed;
+    if (keys["d"]) player.x += player.speed;
+
+    player.x = Math.max(player.size, Math.min(canvas.width - player.size, player.x));
+    player.y = Math.max(player.size, Math.min(canvas.height - player.size, player.y));
+
+}
+function drawPlayer(){
+
+    ctx.fillStyle = player.color;
+
+    ctx.beginPath();
+
+    ctx.arc(player.x, player.y, player.size, 0, Math.PI*2);
+
+    ctx.fill();
+
+}
+function gameLoop(){
+
+    if(!gameRunning) return;
+
+    ctx.fillStyle="#081008";
+
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    movePlayer();
+
+    drawPlayer();
+
+    requestAnimationFrame(gameLoop);
+
+}
