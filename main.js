@@ -255,3 +255,29 @@ function drawHUD(){
     ctx.fillText("🏆 Puntos: "+score,20,80);
 
 }
+// ===============================
+// ZOMBIE SURVIVAL - PARTE 3
+// ===============================
+
+function gameLoop() {
+
+    if (!gameRunning) return;
+
+    // Fondo
+    ctx.fillStyle = "#081008";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Actualizar
+    movePlayer();
+    updateBullets();
+    updateZombies();
+
+    // Dibujar
+    drawPlayer();
+    drawBullets();
+    drawZombies();
+    drawHUD();
+
+    requestAnimationFrame(gameLoop);
+
+}
