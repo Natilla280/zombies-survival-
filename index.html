@@ -191,7 +191,7 @@ let zid = 0;
 
 const ZD = {
   NORMAL:   { hp:100, spd:52,  dmg:25, r:13, col:'#3A7A2A', hcol:'#5A9A4A', sc:1.0 },
-  CHILD:    { hp:60,  spd:95, dmg:25, r:8,  col:'#3A7A4A', hcol:'#5A9A6A', sc:0.9 },
+  CHILD:    { hp:50,  spd:95, dmg:25, r:8,  col:'#3A7A4A', hcol:'#5A9A6A', sc:0.9 },
   FAT:      { hp:150, spd:36,  dmg:25, r:20, col:'#2A5A1A', hcol:'#4A7A3A', sc:1.6 },
   PREGNANT: { hp:150, spd:42,  dmg:25, r:15, col:'#4A7A3A', hcol:'#6A9A5A', sc:1.2 },
   ARMORED:  { hp:100, spd:48,  dmg:25, r:13, col:'#3A4A6A', hcol:'#5A6A8A', sc:1.1 },
@@ -264,7 +264,7 @@ const ROUND_NAMES = [
 
 function startRound(r) {
   round = r;
-  roundTimer = 120;
+  roundTimer = 35;
   roundKills = 0;
   spawnT = 1.5;
   spawnInterval = Math.max(1.1, 5 - r*0.35);
