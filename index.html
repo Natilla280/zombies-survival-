@@ -94,7 +94,7 @@ let pl = {};
 function initPlayer() {
   pl = {
     x: WW/2, y: WH/2,
-    hp: 10000000000000000000, maxHp: 1000000000000000,
+    hp: 200, maxHp: 200,
     spd: 130,
     angle: 0,
     r: 13,
@@ -105,7 +105,7 @@ function initPlayer() {
     weps: [makeWep('PISTOL')],
     wi: 0,
     // battery
-    bat: 100000, batMax: 1000000, batDrain: 1.5,
+    bat: 100, batMax: 100, batDrain: 1.5,
   };
 }
 
@@ -118,7 +118,7 @@ const WEP_DATA = {
   ICE:     { name:'Rifle Hielo',  dmg:5,   rate:0.45, ammo:30, auto:false, col:'#88DDFF', icon:'❄️' },
   RPG:     { name:'RPG',          dmg:250, rate:1.8,  ammo:5,  auto:false, col:'#FF2222', icon:'🚀' },
   FLAME:   { name:'Lanzallamas',  dmg:20,  rate:0.07, ammo:200,auto:true,  col:'#FF6600', icon:'🌋' },
-  BAT:     { name:'Bate Elec.',   dmg:25,  rate:0.20, ammo:-1, auto:false, col:'#FFFF22', icon:'⚡' },
+  BAT:     { name:'Bate Elec.',   dmg:20,  rate:0.10, ammo:-1, auto:false, col:'#FFFF22', icon:'⚡' },
 };
 
 function makeWep(type) {
@@ -223,7 +223,7 @@ function spawnZ(type, pos) {
     throwT: 0,
     screamT: type==='BIGHEAD' ? 3 : 0,
     summonT: type==='BOSS' ? 9 : 0,
-    webT: (type==='SPIDER'||type==='BOSS') ? 4 : 0,
+    webT: (type==='SPIDER'||type==='BOSS') ? 2 : 0,
     exploded: false,
   });
 }
@@ -256,15 +256,15 @@ function placePicks() {
 // ── ROUND SPAWN ──
 const ROUND_NAMES = [
   '','RONDA 1 — Los Muertos','RONDA 2 — Niños Zombies',
-  'RONDA 3 — Los Gordos','RONDA 4 — La Madre',
+  'RONDA 3 — El Goldito','RONDA 4 — Su Madre',
   'RONDA 5 — Blindados','RONDA 6 — Ciencia Muerta',
-  'RONDA 7 — KAMIKAZES','RONDA 8 — Telarañas',
+  'RONDA 7 — KAMIKAZES','RONDA 8 — Spider Araña ',
   'RONDA 9 — El Gritón','☠ RONDA 10 — PACIENTE CERO',
 ];
 
 function startRound(r) {
   round = r;
-  roundTimer = 35;
+  roundTimer = 100;
   roundKills = 0;
   spawnT = 1.5;
   spawnInterval = Math.max(1.1, 5 - r*0.35);
@@ -295,7 +295,7 @@ function spawnForRound() {
   else if (r===7) t = v<0.38?'KAMIKAZE':v<0.55?'FAT':'NORMAL';
   else if (r===8) t = v<0.38?'SPIDER':v<0.55?'KAMIKAZE':'NORMAL';
   else if (r===9) t = v<0.22?'BIGHEAD':v<0.44?'SPIDER':'NORMAL';
-  else            t = v<0.15?'FAT':v<0.3?'ARMORED':v<0.45?'SCIENTIST':v<0.55?'SPIDER':'NORMAL';
+  else            t = v<0.15?'FAT':v<0.3?'ARMORED':v<0.45?'SCIENTIST':v<0.20?'SPIDER':'NORMAL';
   spawnZ(t);
 }
 
